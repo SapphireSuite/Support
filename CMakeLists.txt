@@ -22,3 +22,29 @@ target_include_directories(SA_Support INTERFACE Include)
 
 ### SA_Support module implementation preprocessor.
 target_compile_definitions(SA_Support INTERFACE SA_SUPPORT_IMPL)
+
+
+# Helper Functions
+
+## Max warning level (for testing).
+function(SA_SetupMaxWarningLevel _target)
+
+	if(MSVC)
+
+		if(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang") # ClangCl
+
+			target_compile_options(${_target} PUBLIC -W4)
+
+		else()
+
+			target_compile_options(${_target} PUBLIC /W4)
+
+		endif()
+
+	elseif()
+
+		target_compile_options(${_target} PUBLIC -Wall -Wextra)
+
+	endif()
+	
+endfunction()
