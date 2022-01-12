@@ -1,6 +1,6 @@
 # Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
 
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 
 
 
