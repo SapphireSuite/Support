@@ -6,17 +6,17 @@ if(MSVC)
 
 	if(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang") # ClangCl
 
-		target_compile_options(SA_Support PUBLIC -W4)
+		target_compile_options(SA_Support INTERFACE -W4)
 
 	else()
 
-		target_compile_options(SA_Support PUBLIC /W4)
+		target_compile_options(SA_Support INTERFACE /W4)
 
 	endif()
 
 else()
 
-	target_compile_options(SA_Support PUBLIC -Wall -Wextra)
+	target_compile_options(SA_Support INTERFACE -Wall -Wextra)
 
 endif()
 
