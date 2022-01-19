@@ -25,31 +25,26 @@ target_compile_definitions(SA_Support INTERFACE SA_SUPPORT_IMPL)
 
 
 
+# Options
+
+## Add SA_Maths's tests to build tree.
+option(SA_SUPPORT_BUILD_TESTS_OPT "Should build SA_Maths tests" OFF)
+
+
+# Entrypoints
+
+if(SA_SUPPORT_BUILD_TESTS_OPT)
+
+	### Enable testing for this directory and below.
+	enable_testing()
+
+	add_subdirectory(Tests)
+
+endif()
+
+
+
 # Helper Functions
-
-## Max warning level (for testing).
-function(SA_SetupMaxWarningLevel _target)
-
-	if(MSVC)
-
-		if(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang") # ClangCl
-
-			target_compile_options(${_target} PUBLIC -W4)
-
-		else()
-
-			target_compile_options(${_target} PUBLIC /W4)
-
-		endif()
-
-	elseif()
-
-		target_compile_options(${_target} PUBLIC -Wall -Wextra)
-
-	endif()
-	
-endfunction()
-
 
 function(SA_SetupIntrinsicsFlags _target _linkOpt)
 
