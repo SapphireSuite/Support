@@ -38,6 +38,14 @@ add_executable(SA_SupportUT ${SA_SUPPORT_UT_SOURCES})
 
 
 
+## Compile features
+
+### Standard
+target_compile_features(SA_SupportUT PUBLIC c_std_11)
+target_compile_features(SA_SupportUT PUBLIC cxx_std_20)
+
+
+
 # Dependencies
 
 ### Add library dependencies.
