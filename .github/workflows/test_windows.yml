@@ -1,0 +1,168 @@
+# Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
+
+name: Windows
+
+# Trigger the action.
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+      - dev_*
+      - '!dev_osx'
+      - '!dev_macos'
+      - '!dev_unix'
+
+
+# Settings common to all jobs.
+defaults:
+  run:
+    shell: bash
+
+
+# Variables common to all jobs.
+env:
+  CMAKE_V: '3.17.0'
+  CMAKE_OPTIONS: '-DSA_CI=1 -DSA_SUPPORT_BUILD_TESTS_OPT=ON'
+
+
+# Job matrix
+jobs:
+
+  ctests_win:
+    name: ${{ matrix.config }} ${{ matrix.compiler }}
+
+    # Setup environment.
+    runs-on: windows-latest
+
+    strategy:
+
+      # Don't cancel jobs on failure.
+      fail-fast: false
+
+      matrix:
+
+        config:
+          - Debug
+          - Release
+
+        compiler:
+          - Clang
+
+        gen:
+          - Ninja
+
+
+    # Steps execution.
+    steps:
+
+        - name: "[Action] Checkout repository"
+          uses: actions/checkout@v2
+          with:
+            submodules: recursive
+
+
+        # Install CMake.
+        - name: "[Action] Install CMake"
+          uses: jwlawson/actions-setup-cmake@v1.8
+          with:
+            cmake-version: ${{ env.CMAKE_V }}
+
+
+        # Install Ninja.
+        - name: "[Action] Install Ninja 1/2"
+          if: ${{ matrix.gen == 'Ninja' }}
+          uses: seanmiddleditch/gha-setup-ninja@master
+
+        # Set env variables.
+        - name: "[Command] Install Ninja 2/2"
+          if: ${{ matrix.gen == 'Ninja' }}
+          run: echo "GEN=Ninja" >> $GITHUB_ENV
+
+
+        # Deploy & Build & Test
+        - name: Generate Project
+          run: cmake -B Build/${{ matrix.gen }}/${{ matrix.config }} -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "${GEN}"
+
+        - name: Build Project
+          run: cmake --build Build/${{ matrix.gen }}/${{ matrix.config }} --config ${{ matrix.config }} --verbose
+
+        - name: Run CTests
+          run: cd Build/${{ matrix.gen }}/${{ matrix.config }} && ctest -C ${{ matrix.config }} -V
+
+
+
+  ctests_win_VS:
+    name: ${{ matrix.config }} VS ${{ matrix.compiler }}
+
+    # Setup environment.
+    runs-on: windows-latest
+
+    strategy:
+
+      # Don't cancel jobs on failure.
+      fail-fast: false
+
+      matrix:
+
+        config:
+          - Debug
+          - Release
+
+        compiler:
+          - MSVC
+          #- ClangCl
+
+        gen:
+          #- Visual Studio 15 2017
+          - Visual Studio 16 2019
+          #- Visual Studio 17 2022
+
+
+    # Steps execution.
+    steps:
+
+        - name: "[Action] Checkout repository"
+          uses: actions/checkout@v2
+          with:
+            submodules: recursive
+
+
+        # Install Clang.
+        - name: "[Command] Install LLVM and ClangCl"
+          if: ${{ matrix.compiler == 'ClangCl' }}
+          run: |
+              echo "CC=clang-cl" >> $GITHUB_ENV
+              echo "CXX=clang-cl" >> $GITHUB_ENV
+
+
+        # Install CMake.
+        - name: "[Action] Install CMake"
+          uses: jwlawson/actions-setup-cmake@v1.8
+          with:
+            cmake-version: ${{ env.CMAKE_V }}
+
+
+        # Install VS2019.
+        - name: "[Command] Install Visual Studio"
+          run: echo "GEN=${{ matrix.gen }}" >> $GITHUB_ENV
+
+
+        # Deploy & Build & Test
+
+        # Visual Studio only
+        - name: Generate Project - Visual Studio
+          if: ${{ matrix.compiler != 'Clang' }}
+          run: cmake -B Build/VS2019/${{ matrix.config }} -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "${GEN}" -A x64
+
+        # Visual Studio with ClangCl
+        - name: Generate Project - ClangCl
+          if: ${{ matrix.compiler == 'ClangCl' }}
+          run: cmake -B Build/VS2019/${{ matrix.config }} -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "${GEN}" -A x64 -T "ClangCl"
+
+        - name: Build Project
+          run: cmake --build Build/VS2019/${{ matrix.config }} --config ${{ matrix.config }} --verbose
+
+        - name: Run CTests
+          run: cd Build/VS2019/${{ matrix.config }} && ctest -C ${{ matrix.config }} -V
