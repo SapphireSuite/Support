@@ -6,12 +6,7 @@
 
 #include <SA/Support/Platforms.hpp>
 
-#if SA_WIN
-#else
-
-	#include <sys/stat.h>
-
-#endif
+#include <sys/stat.h>
 
 namespace Sa
 {
@@ -28,6 +23,8 @@ namespace Sa
 		localtime_r(&_inTime, &qTime);
 
 #endif
+
+		return qTime;
 	}
 
 

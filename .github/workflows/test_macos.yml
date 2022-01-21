@@ -46,7 +46,7 @@ jobs:
           - Debug
           - Release
 
-        xcode_v: [11.7, 12.5, 13.2, latest-stable]
+        xcode_v: [11.7, 12.5, latest-stable]
 
     # Steps execution.
     steps:
