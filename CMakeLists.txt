@@ -14,14 +14,17 @@ message("SA_Maths Main directory: ${CMAKE_SOURCE_DIR}")
 
 # Library
 
-## Interface library.
-add_library(SA_Support INTERFACE)
+## Input.
+file(GLOB_RECURSE SA_SUPPORT_SOURCES "Source/*")
+
+## Static library.
+add_library(SA_Support STATIC ${SA_SUPPORT_SOURCES})
 
 ## Include directories
-target_include_directories(SA_Support INTERFACE Include)
+target_include_directories(SA_Support PUBLIC Include)
 
 ### SA_Support module implementation preprocessor.
-target_compile_definitions(SA_Support INTERFACE SA_SUPPORT_IMPL)
+target_compile_definitions(SA_Support PUBLIC SA_SUPPORT_IMPL)
 
 
 
