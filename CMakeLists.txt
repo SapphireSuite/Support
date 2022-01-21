@@ -23,6 +23,12 @@ add_library(SA_Support STATIC ${SA_SUPPORT_SOURCES})
 ## Include directories
 target_include_directories(SA_Support PUBLIC Include)
 
+## Compile features
+
+### Standard
+target_compile_features(SA_Support PUBLIC c_std_11)
+target_compile_features(SA_Support PUBLIC cxx_std_20)
+
 ### SA_Support module implementation preprocessor.
 target_compile_definitions(SA_Support PUBLIC SA_SUPPORT_IMPL)
 
