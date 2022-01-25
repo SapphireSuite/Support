@@ -52,19 +52,7 @@ namespace Sa
 	}
 
 	template <typename EnumT>
-	constexpr bool Flags<EnumT>::operator==(BitsT _rhs) const noexcept
-	{
-		return Equals(_rhs);
-	}
-
-	template <typename EnumT>
 	constexpr bool Flags<EnumT>::operator!=(EnumT _rhs) const noexcept
-	{
-		return !Equals(_rhs);
-	}
-
-	template <typename EnumT>
-	constexpr bool Flags<EnumT>::operator!=(BitsT _rhs) const noexcept
 	{
 		return !Equals(_rhs);
 	}
