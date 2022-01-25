@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(SA_Support)
 
-message("SA_Maths Main directory: ${CMAKE_SOURCE_DIR}")
+message("SA_Support Main directory: ${CMAKE_SOURCE_DIR}")
 
 
 
