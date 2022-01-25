@@ -20,49 +20,114 @@ namespace Sa
 //{ Equals
 
 	template <typename EnumT>
-	constexpr bool Flags<EnumT>::Equals(Flags _other) const noexcept
+	constexpr bool Flags<EnumT>::Equals(EnumT _enum) const noexcept
 	{
-		return mBits == _other.mBits;
+		return Equals(static_cast<BitsT>(_enum));
 	}
 
 	template <typename EnumT>
-	constexpr bool Flags<EnumT>::operator==(Flags _rhs) const noexcept
+	constexpr bool Flags<EnumT>::Equals(BitsT _bits) const noexcept
+	{
+		return mBits == _bits;
+	}
+
+
+	template <typename EnumT>
+	constexpr bool Flags<EnumT>::IsSet(EnumT _enum) const noexcept
+	{
+		return mBits & static_cast<BitsT>(_enum);
+	}
+
+	template <typename EnumT>
+	constexpr bool Flags<EnumT>::AreSet(BitsT _bits) const noexcept
+	{
+		return (mBits & _bits) == _bits;
+	}
+
+
+	template <typename EnumT>
+	constexpr bool Flags<EnumT>::operator==(EnumT _rhs) const noexcept
 	{
 		return Equals(_rhs);
 	}
 
 	template <typename EnumT>
-	constexpr bool Flags<EnumT>::operator!=(Flags _rhs) const noexcept
+	constexpr bool Flags<EnumT>::operator==(BitsT _rhs) const noexcept
 	{
-		return !(*this == _rhs);
+		return Equals(_rhs);
 	}
-
 
 	template <typename EnumT>
-	constexpr bool Flags<EnumT>::AreSet(Flags _flags) const noexcept
+	constexpr bool Flags<EnumT>::operator!=(EnumT _rhs) const noexcept
 	{
-		return (mBits & _flags.mBits) == _flags.mBits;
+		return !Equals(_rhs);
 	}
+
+	template <typename EnumT>
+	constexpr bool Flags<EnumT>::operator!=(BitsT _rhs) const noexcept
+	{
+		return !Equals(_rhs);
+	}
+
 //}
 
 //{ Setters
 
 	template <typename EnumT>
-	Flags<EnumT>& Flags<EnumT>::Add(Flags _flags) noexcept
+	Flags<EnumT>& Flags<EnumT>::Set(EnumT _enum) noexcept
 	{
-		mBits |= _flags.mBits;
+		return Set(static_cast<BitsT>(_enum));
+	}
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::Set(BitsT _bits) noexcept
+	{
+		mBits = _bits;
+
+		return *this;
+	}
+
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::Add(EnumT _enum) noexcept
+	{
+		return Add(static_cast<BitsT>(_enum));
+	}
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::Add(BitsT _bits) noexcept
+	{
+		mBits |= _bits;
 
 		return *this;
 	}
 
 	template <typename EnumT>
-	Flags<EnumT>& Flags<EnumT>::Remove(Flags _flags) noexcept
+	Flags<EnumT>& Flags<EnumT>::Remove(EnumT _enum) noexcept
 	{
-		mBits &= ~_flags.mBits;
+		return Remove(static_cast<BitsT>(_enum));
+	}
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::Remove(BitsT _bits) noexcept
+	{
+		mBits &= ~_bits;
 
 		return *this;
 	}
 
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::operator=(EnumT _rhs) noexcept
+	{
+		return Set(_rhs);
+	}
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::operator=(BitsT _rhs) noexcept
+	{
+		return Set(_rhs);
+	}
 //}
 
 //{ Operators
@@ -73,45 +138,45 @@ namespace Sa
 		return Flags(~mBits);
 	}
 
+
 	template <typename EnumT>
-	constexpr Flags<EnumT> Flags<EnumT>::operator|(Flags _rhs) const noexcept
+	Flags<EnumT>& Flags<EnumT>::operator|=(EnumT _rhs) noexcept
 	{
-		return mBits | _rhs.mBits;
+		return *this |= static_cast<BitsT>(_rhs);
 	}
 
 	template <typename EnumT>
-	constexpr Flags<EnumT> Flags<EnumT>::operator&(Flags _rhs) const noexcept
+	Flags<EnumT>& Flags<EnumT>::operator|=(BitsT _rhs) noexcept
 	{
-		return mBits & _rhs.mBits;
-	}
-
-	template <typename EnumT>
-	constexpr Flags<EnumT> Flags<EnumT>::operator^(Flags _rhs) const noexcept
-	{
-		return mBits ^ _rhs.mBits;
-	}
-
-
-	template <typename EnumT>
-	Flags<EnumT>& Flags<EnumT>::operator|=(Flags _rhs)
-	{
-		mBits |= _rhs.mBits;
+		mBits |= _rhs;
 
 		return *this;
 	}
 
 	template <typename EnumT>
-	Flags<EnumT>& Flags<EnumT>::operator&=(Flags _rhs)
+	Flags<EnumT>& Flags<EnumT>::operator&=(EnumT _rhs) noexcept
 	{
-		mBits &= _rhs.mBits;
+		return *this &= static_cast<BitsT>(_rhs);
+	}
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::operator&=(BitsT _rhs) noexcept
+	{
+		mBits &= _rhs;
 
 		return *this;
 	}
 
 	template <typename EnumT>
-	Flags<EnumT>& Flags<EnumT>::operator^=(Flags _rhs)
+	Flags<EnumT>& Flags<EnumT>::operator^=(EnumT _rhs) noexcept
 	{
-		mBits ^= _rhs.mBits;
+		return *this ^= static_cast<BitsT>(_rhs);
+	}
+
+	template <typename EnumT>
+	Flags<EnumT>& Flags<EnumT>::operator^=(BitsT _rhs) noexcept
+	{
+		mBits ^= _rhs;
 
 		return *this;
 	}

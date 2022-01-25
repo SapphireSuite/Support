@@ -63,40 +63,78 @@ namespace Sa
 //{ Equals
 
 		/**
-		*	\brief Perform \b equal operation between Flags.
+		*	\brief Perform \b equal operation between Flags and enum.
 		*
-		*	\param[in] _other		Other flags.
-		*
-		*	\return result of equal operation.
-		*/
-		constexpr bool Equals(Flags _other) const noexcept;
-
-		/**
-		*	\brief Perform \b equal operation between Flags.
-		*
-		*	\param[in] _rhs		Other flags.
+		*	\param[in] _enum		Right operand.
 		*
 		*	\return result of equal operation.
 		*/
-		constexpr bool operator==(Flags _rhs) const noexcept;
+		constexpr bool Equals(EnumT _enum) const noexcept;
 
 		/**
-		*	\brief Perform \b not \b equal operation between Flags.
+		*	\brief Perform \b equal operation between Flags and type bits.
 		*
-		*	\param[in] _rhs		Other flags.
+		*	\param[in] _bits		Right operand.
 		*
 		*	\return result of equal operation.
 		*/
-		constexpr bool operator!=(Flags _rhs) const noexcept;
+		constexpr bool Equals(BitsT _bits) const noexcept;
+
 
 		/**
-		*	\brief \e Getter of bool if <b>all bit values</b> from flags are currently set.
+		*	\brief \e Getter of bool if the <b>enum value</b> is currently set.
 		*
-		*	\param[in] _flags	Flag bit values to check with.
+		*	\param[in] _enum	Enum value to check with.
+		*
+		*	\return true if enum value is set, otherwise false.
+		*/
+		constexpr bool IsSet(EnumT _enum) const noexcept;
+
+		/**
+		*	\brief \e Getter of bool if <b>all bit values</b> are currently set.
+		*
+		*	\param[in] _bits	Bit values to check with.
 		*
 		*	\return true if bit values are set, otherwise false.
 		*/
-		constexpr bool AreSet(Flags _flags) const noexcept;
+		constexpr bool AreSet(BitsT _bits) const noexcept;
+
+
+		/**
+		*	\brief Perform \b equal operation between bit flags and enum.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return result of equal operation.
+		*/
+		constexpr bool operator==(EnumT _rhs) const noexcept;
+
+		/**
+		*	\brief Perform \b equal operation between Flags and type bits.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return result of equal operation.
+		*/
+		constexpr bool operator==(BitsT _rhs) const noexcept;
+
+		/**
+		*	\brief Perform <b>not equal</b> operation between bit flags and enum.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return result of not equal operation.
+		*/
+		constexpr bool operator!=(EnumT _rhs) const noexcept;
+
+		/**
+		*	\brief Perform <b>not equal</b> operation between Flags and type bits.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return result of not equal operation.
+		*/
+		constexpr bool operator!=(BitsT _rhs) const noexcept;
 
 //}
 
@@ -104,23 +142,78 @@ namespace Sa
 //{ Setters
 
 		/**
-		*	\brief Add flag values to the current bit flags.
+		*	\brief Set enum value to the current bit flags.
 		*
-		*	\param[in] _flags	Flag values to add.
+		*	\param[in] _enum	Enum value to set.
 		*
 		*	\return this.
 		*/
-		Flags& Add(Flags _flags) noexcept;
+		Flags& Set(EnumT _enum) noexcept;
 
 		/**
-		*	\brief Remove flag values to the current bit flags.
+		*	\brief Set bits value to the current bit flags.
 		*
-		*	\param[in] _flags	Flag value to add.
+		*	\param[in] _bits	Bits value to set.
 		*
 		*	\return this.
 		*/
-		Flags& Remove(Flags _flags) noexcept;
+		Flags& Set(BitsT _bits) noexcept;
 
+
+		/**
+		*	\brief Add enum value to the current bit flags.
+		*
+		*	\param[in] _enum	Enum value to add.
+		*
+		*	\return this.
+		*/
+		Flags& Add(EnumT _enum) noexcept;
+
+		/**
+		*	\brief Add bits value to the current bit flags.
+		*
+		*	\param[in] _bits	Bits value to add.
+		*
+		*	\return this.
+		*/
+		Flags& Add(BitsT _bits) noexcept;
+
+		/**
+		*	\brief Remove enum value to the current bit flags.
+		*
+		*	\param[in] _enum	Enum value to remove.
+		*
+		*	\return this.
+		*/
+		Flags& Remove(EnumT _enum) noexcept;
+
+		/**
+		*	\brief Remove bits value to the current bit flags.
+		*
+		*	\param[in] _bits	Bits value to remove.
+		*
+		*	\return this.
+		*/
+		Flags& Remove(BitsT _bits) noexcept;
+
+
+		/**
+		*	\brief Perform \b assign operations with EnumT.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return this instance.
+		*/
+		Flags& operator=(EnumT _rhs) noexcept;
+
+		/**
+		*	\brief Perform \b assign operations with BitsT.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return this instance.
+		*/
+		Flags& operator=(BitsT _rhs) noexcept;
 //}
 
 
@@ -133,60 +226,60 @@ namespace Sa
 		*/
 		constexpr Flags operator~() const noexcept;
 
-		/**
-		*	\brief Perform \b OR operation.
-		*
-		*	\param[in] _rhs		Right operand.
-		*
-		*	\return OR result.
-		*/
-		constexpr Flags operator|(Flags _rhs) const noexcept;
 
 		/**
-		*	\brief Perform \b AND operation.
-		*
-		*	\param[in] _rhs		Right operand.
-		*
-		*	\return AND result.
-		*/
-		constexpr Flags operator&(Flags _rhs) const noexcept;
-
-		/**
-		*	\brief Perform \b XOR operation.
-		*
-		*	\param[in] _rhs		Right operand.
-		*
-		*	\return XOR result.
-		*/
-		constexpr Flags operator^(Flags _rhs) const noexcept;
-
-
-		/**
-		*	\brief Perform \b OR and \b assign operations.
+		*	\brief Perform \b OR and \b assign operations with EnumT.
 		*
 		*	\param[in] _rhs		Right operand.
 		*
 		*	\return this instance.
 		*/
-		Flags& operator|=(Flags _rhs);
+		Flags& operator|=(EnumT _rhs) noexcept;
 
 		/**
-		*	\brief Perform \b AND and \b assign operations.
+		*	\brief Perform \b OR and \b assign operations with BitsT.
 		*
 		*	\param[in] _rhs		Right operand.
 		*
 		*	\return this instance.
 		*/
-		Flags& operator&=(Flags _rhs);
+		Flags& operator|=(BitsT _rhs) noexcept;
 
 		/**
-		*	\brief Perform \b XOR and \b assign operations.
+		*	\brief Perform \b AND and \b assign operations with EnumT.
 		*
 		*	\param[in] _rhs		Right operand.
 		*
 		*	\return this instance.
 		*/
-		Flags& operator^=(Flags _rhs);
+		Flags& operator&=(EnumT _rhs) noexcept;
+
+		/**
+		*	\brief Perform \b AND and \b assign operations with BitsT.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return this instance.
+		*/
+		Flags& operator&=(BitsT _rhs) noexcept;
+
+		/**
+		*	\brief Perform \b XOR and \b assign operations with EnumT.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return this instance.
+		*/
+		Flags& operator^=(EnumT _rhs) noexcept;
+
+		/**
+		*	\brief Perform \b XOR and \b assign operations with BitsT.
+		*
+		*	\param[in] _rhs		Right operand.
+		*
+		*	\return this instance.
+		*/
+		Flags& operator^=(BitsT _rhs) noexcept;
 
 
 		/**
@@ -194,7 +287,8 @@ namespace Sa
 		*
 		*	\return bit flags.
 		*/
-		explicit operator BitsT() const noexcept;
+		operator BitsT() const noexcept;
+
 //}
 	};
 
