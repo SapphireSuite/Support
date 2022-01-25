@@ -110,15 +110,6 @@ namespace Sa
 		constexpr bool operator==(EnumT _rhs) const noexcept;
 
 		/**
-		*	\brief Perform \b equal operation between Flags and type bits.
-		*
-		*	\param[in] _rhs		Right operand.
-		*
-		*	\return result of equal operation.
-		*/
-		constexpr bool operator==(BitsT _rhs) const noexcept;
-
-		/**
 		*	\brief Perform <b>not equal</b> operation between bit flags and enum.
 		*
 		*	\param[in] _rhs		Right operand.
@@ -126,15 +117,6 @@ namespace Sa
 		*	\return result of not equal operation.
 		*/
 		constexpr bool operator!=(EnumT _rhs) const noexcept;
-
-		/**
-		*	\brief Perform <b>not equal</b> operation between Flags and type bits.
-		*
-		*	\param[in] _rhs		Right operand.
-		*
-		*	\return result of not equal operation.
-		*/
-		constexpr bool operator!=(BitsT _rhs) const noexcept;
 
 //}
 
