@@ -9,8 +9,19 @@
 
 #include <string>
 
+/**
+*	\file DateTime.hpp
+* 
+*	\brief Date Time definition.
+* 
+*	\ingroup Support
+*	\{
+*/
+
+
 namespace Sa
 {
+	/// Date time structure type.
 	struct DateTime
 	{
 		/// second number [0, 59].
@@ -71,10 +82,31 @@ namespace Sa
 
 //{ Equals
 
+		/**
+		*	\brief Compare two DateTime equality.
+		* 
+		*	\param[in] _other	Other date time to compare with.
+		* 
+		*	\return Whether this and _other are equal.
+		*/
 		bool Equals(const DateTime& _other) const noexcept;
 
+		/**
+		*	\brief Compare two DateTime equality.
+		* 
+		*	\param[in] _rhs		Other date time to compare with.
+		* 
+		*	\return Whether this and _other are equal.
+		*/
 		bool operator==(const DateTime& _rhs) const noexcept;
 
+		/**
+		*	\brief Compare two DateTime inequality.
+		* 
+		*	\param[in] _rhs		Other date time to compare with.
+		* 
+		*	\return Whether this and _other are not equal.
+		*/
 		bool operator!=(const DateTime& _rhs) const noexcept;
 
 //}
@@ -115,5 +147,8 @@ namespace Sa
 	*/
 	std::string ToString(const DateTime& _date);
 }
+
+
+/** \} */
 
 #endif // GUARD

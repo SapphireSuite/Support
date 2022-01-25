@@ -106,7 +106,7 @@ namespace Sa
 		/**
 		*	\brief Add flag values to the current bit flags.
 		*
-		*	\param[in] _enum	Enum value to add.
+		*	\param[in] _flags	Flag values to add.
 		*
 		*	\return this.
 		*/
@@ -115,7 +115,7 @@ namespace Sa
 		/**
 		*	\brief Remove flag values to the current bit flags.
 		*
-		*	\param[in] _enum	Enum value to add.
+		*	\param[in] _flags	Flag value to add.
 		*
 		*	\return this.
 		*/
@@ -198,6 +198,16 @@ namespace Sa
 //}
 	};
 
+
+	/**
+	*	\brief ToString implementation of Flags
+	* 
+	*	\tparam EnumT		Enum type of the flags.
+	* 
+	*	\param[in] _flags	Flags to convert.
+	* 
+	*	\return flags as a string
+	*/
 	template <typename EnumT>
 	std::string ToString(Flags<EnumT> _flags);
 

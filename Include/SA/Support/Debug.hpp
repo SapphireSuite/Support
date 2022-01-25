@@ -6,9 +6,9 @@
 #define SAPPHIRE_SUPPORT_DEBUG_GUARD
 
 /**
-*	\file Support/Config.hpp
+*	\file Support/Debug.hpp
 *
-*	\brief <b>Debug</b> config file.
+*	\brief \b Debug support definition file.
 *
 *	\ingroup Support
 *	\{
