@@ -12,6 +12,7 @@ on:
       - dev_*
       - '!dev_unix'
       - '!dev_win'
+      - '!dev_windows'
 
 
 # Settings common to all jobs.
