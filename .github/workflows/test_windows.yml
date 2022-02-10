@@ -32,6 +32,7 @@ jobs:
   MSVC_2017:
     runs-on: windows-2016
     strategy:
+      fail-fast: false
       matrix:
         config: [Debug, Release]
 
@@ -48,6 +49,7 @@ jobs:
   MSVC_2019:
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
         config: [Debug, Release]
 
@@ -64,6 +66,7 @@ jobs:
   MSVC_2022:
     runs-on: windows-2022
     strategy:
+      fail-fast: false
       matrix:
         config: [Debug, Release]
 
@@ -80,6 +83,7 @@ jobs:
   ClangCL:
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
         config: [Debug, Release]
 
@@ -96,6 +100,7 @@ jobs:
   Clang:
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
         config: [Debug, Release]
 
