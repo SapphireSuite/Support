@@ -27,7 +27,7 @@
 #if SA_GLFW
 
 	// Include Vulkan before GLFW (if enabled).
-	#include <SA/Core/Support/API/Vulkan.hpp>
+	#include <SA/Support/API/Vulkan.hpp>
 
 	#include <GLFW/glfw3.h>
 
