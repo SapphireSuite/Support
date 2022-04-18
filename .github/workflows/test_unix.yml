@@ -41,6 +41,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
       - name: "[Package] Install GCC"
         run: |
@@ -65,6 +67,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
       - name: "[Package] Install LLVM and Clang"
         if: ${{ matrix.compiler == 'Clang' }}

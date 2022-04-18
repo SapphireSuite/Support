@@ -38,6 +38,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Generate Project
         run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "Visual Studio 15 2017" -A x64
       - name: Build Project
@@ -55,6 +57,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Generate Project
         run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "Visual Studio 16 2019" -A x64
       - name: Build Project
@@ -72,6 +76,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Generate Project
         run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "Visual Studio 17 2022" -A x64
       - name: Build Project
@@ -89,6 +95,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Generate Project
         run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G "Visual Studio 17 2022" -A x64 -T ClangCL
       - name: Build Project
@@ -106,6 +114,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
       - name: "[Command] Install LLVM & Clang"
         run: |
