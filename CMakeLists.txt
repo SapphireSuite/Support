@@ -42,6 +42,8 @@ option(SA_SUPPORT_BUILD_TESTS_OPT "Should build SA_Maths tests" OFF)
 
 # Entrypoints
 
+add_subdirectory(ThirdParty)
+
 if(SA_SUPPORT_BUILD_TESTS_OPT)
 
 	### Enable testing for this directory and below.
@@ -51,20 +53,3 @@ if(SA_SUPPORT_BUILD_TESTS_OPT)
 
 endif()
 
-
-
-# Helper Functions
-
-function(SA_SetupIntrinsicsFlags _target _linkOpt)
-
-	if("${CMAKE_CXX_COMPILER_ID}" MATCHES "MSVC")
-
-		target_compile_options(${_target} ${_linkOpt} /arch:AVX2)
-
-	else()
-
-		target_compile_options(${_target} ${_linkOpt} -mavx -mavx2)
-
-	endif()
-
-endfunction()
