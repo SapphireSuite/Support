@@ -1,0 +1,25 @@
+{
+    "cmake.generator": "Ninja",
+    "cmake.setBuildTypeOnMultiConfig": true,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#c38fcc",
+        "activityBar.activeBorder": "#ebe8d3",
+        "activityBar.background": "#c38fcc",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#ebe8d3",
+        "activityBarBadge.foreground": "#15202b",
+        "sash.hoverBorder": "#c38fcc",
+        "statusBar.background": "#b06cbc",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#9b4da8",
+        "statusBarItem.remoteBackground": "#b06cbc",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#b06cbc",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#b06cbc99",
+        "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#b06cbc",
+    "editor.formatOnSave": true,
+}
