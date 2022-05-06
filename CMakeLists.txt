@@ -22,6 +22,7 @@ add_library(SA_Support STATIC ${SA_SUPPORT_SOURCES})
 
 ## Include directories
 target_include_directories(SA_Support PUBLIC Include)
+target_include_directories(SA_Support PRIVATE Include/SA/Support)
 
 ## Compile features
 

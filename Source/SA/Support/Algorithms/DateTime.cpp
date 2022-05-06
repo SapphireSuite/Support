@@ -1,10 +1,10 @@
 // Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
 
-#include <SA/Support/Algorithms/DateTime.hpp>
+#include <Algorithms/DateTime.hpp>
 
 #include <ctime>
 
-#include <SA/Support/Platforms.hpp>
+#include <Platforms.hpp>
 
 #include <sys/stat.h>
 
