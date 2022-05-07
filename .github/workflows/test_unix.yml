@@ -25,7 +25,7 @@ defaults:
 # Variables common to all jobs.
 env:
   CMAKE_V: '3.17.0'
-  CMAKE_OPTIONS: '-DSA_CI=1 -DSA_SUPPORT_BUILD_TESTS_OPT=ON'
+  CMAKE_OPTIONS: '-DSA_CI=1'
 
 
 # Job matrix
@@ -45,16 +45,13 @@ jobs:
           submodules: recursive
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
       - name: "[Package] Install GCC"
-        run: |
-            sudo apt-get install g++-${{ matrix.compiler_v }}
-            echo "CC=gcc-${{ matrix.compiler_v }}" >> $GITHUB_ENV
-            echo "CXX=g++-${{ matrix.compiler_v }}" >> $GITHUB_ENV
+        run: sudo apt-get install g++-${{ matrix.compiler_v }}
       - name: Generate Project
-        run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G Ninja
+        run: cmake --preset="GCC ${{ matrix.config }}" ${{ env.CMAKE_OPTIONS }}
       - name: Build Project
-        run: cmake --build Build --config ${{ matrix.config }} --verbose
+        run: cmake --build --preset="GCC ${{ matrix.config }}" --verbose
       - name: Run CTests
-        run: cd Build && ctest -C ${{ matrix.config }} -V
+        run: ctest --preset="GCC ${{ matrix.config }}" -V
 
 
   Clang:
@@ -71,14 +68,10 @@ jobs:
           submodules: recursive
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
       - name: "[Package] Install LLVM and Clang"
-        if: ${{ matrix.compiler == 'Clang' }}
-        run: |
-            sudo apt-get install clang-${{ matrix.compiler_v }}
-            echo "CC=clang-${{ matrix.compiler_v }}" >> $GITHUB_ENV
-            echo "CXX=clang++-${{ matrix.compiler_v }}" >> $GITHUB_ENV
+        run: sudo apt-get install clang-${{ matrix.compiler_v }}
       - name: Generate Project
-        run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G Ninja
+        run: cmake --preset="Clang ${{ matrix.config }}" ${{ env.CMAKE_OPTIONS }}
       - name: Build Project
-        run: cmake --build Build --config ${{ matrix.config }} --verbose
+        run: cmake --build --preset="Clang ${{ matrix.config }}" --verbose
       - name: Run CTests
-        run: cd Build && ctest -C ${{ matrix.config }} -V
+        run: ctest --preset="Clang ${{ matrix.config }}" -V
