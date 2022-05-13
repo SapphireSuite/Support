@@ -8,7 +8,7 @@
 
 #include <sys/stat.h>
 
-namespace Sa
+namespace SA
 {
 	tm LocalTime(const time_t& _inTime)
 	{

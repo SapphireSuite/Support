@@ -19,7 +19,7 @@
 */
 
 
-namespace Sa
+namespace SA
 {
 	/// Date time structure type.
 	struct DateTime

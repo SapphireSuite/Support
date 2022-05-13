@@ -25,7 +25,7 @@
 *	\{
 */
 
-namespace Sa
+namespace SA
 {
 	/**
 	*	\brief \e Cross-platform \b BitScanForward implementation.

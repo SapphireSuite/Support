@@ -4,7 +4,7 @@
 
 #include <SA/Support/Algorithms/DateTime.hpp>
 
-namespace Sa::UT::DateTimeT
+namespace SA::UT::DateTimeT
 {
 	TEST(DateTimeT, Constructors)
 	{

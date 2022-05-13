@@ -4,7 +4,7 @@
 
 #include <SA/Support/Algorithms/BitScanForward.hpp>
 
-namespace Sa::UT::BSF
+namespace SA::UT::BSF
 {
 	TEST(BitScanForward, BitScanForward)
 	{
