@@ -2,6 +2,7 @@
 
 name: MacOS
 
+
 # Trigger the action.
 on:
   push:
@@ -15,10 +16,12 @@ on:
       - '!dev_windows'
 
 
+
 # Settings common to all jobs.
 defaults:
   run:
     shell: bash
+
 
 
 # Variables common to all jobs.
@@ -27,49 +30,64 @@ env:
   CMAKE_OPTIONS: '-DSA_CI=1'
 
 
+
 # Job matrix
 jobs:
 
   Xcode:
     runs-on: macos-latest
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
         compiler_v: [11.7, 12.5, latest-stable]
 
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - uses: maxim-lobanov/setup-xcode@v1 # Install Xcode.
         with:
           xcode-version: ${{ matrix.compiler_v }}
+
       - name: Generate Project
         run: cmake --preset="Xcode" ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="Xcode ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="Xcode ${{ matrix.config }}" -V
 
+
+
   GNU:
     runs-on: macos-latest
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
-        compiler_v: [11]
+
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+          
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
+
       - name: "[Package] Install GCC"
-        run: brew install gcc@${{ matrix.compiler_v }}
+        run: brew install gcc
+
       - name: Generate Project
-        run: cmake --preset="GCC ${{ matrix.config }}" ${{ env.CMAKE_OPTIONS }}
+        run: cmake --preset="GCC" ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="GCC ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="GCC ${{ matrix.config }}" -V

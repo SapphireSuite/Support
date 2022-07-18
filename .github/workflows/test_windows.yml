@@ -2,6 +2,7 @@
 
 name: Windows
 
+
 # Trigger the action.
 on:
   push:
@@ -15,10 +16,12 @@ on:
       - '!dev_unix'
 
 
+
 # Settings common to all jobs.
 defaults:
   run:
     shell: bash
+
 
 
 # Variables common to all jobs.
@@ -26,81 +29,106 @@ env:
   CMAKE_OPTIONS: '-DSA_CI=1'
 
 
+
 # Job matrix
 jobs:
 
   MSVC_2019:
     runs-on: windows-2019
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
 
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - name: Generate Project
         run: cmake --preset=VS_2019 ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="VS_2019 ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="VS_2019 ${{ matrix.config }}" -V
 
 
+
   MSVC_2022:
     runs-on: windows-2022
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
 
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - name: Generate Project
         run: cmake --preset=VS_2022 ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="VS_2022 ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="VS_2022 ${{ matrix.config }}" -V
 
 
+
   ClangCL:
     runs-on: windows-latest
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
 
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - name: Generate Project
         run: cmake --preset=VS_ClangCL ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="VS_ClangCL ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="VS_ClangCL ${{ matrix.config }}" -V
 
 
+
   Clang:
     runs-on: windows-latest
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
 
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
+
       - name: Generate Project
-        run: cmake --preset="Clang ${{ matrix.config }}" ${{ env.CMAKE_OPTIONS }}
+        run: cmake --preset="Clang" ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="Clang ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="Clang ${{ matrix.config }}" -V

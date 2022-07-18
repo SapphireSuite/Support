@@ -2,6 +2,7 @@
 
 name: Linux
 
+
 # Trigger the action.
 on:
   push:
@@ -16,10 +17,12 @@ on:
       - '!dev_windows'
 
 
+
 # Settings common to all jobs.
 defaults:
   run:
     shell: bash
+
 
 
 # Variables common to all jobs.
@@ -28,50 +31,74 @@ env:
   CMAKE_OPTIONS: '-DSA_CI=1'
 
 
+
 # Job matrix
 jobs:
 
   GNU:
     runs-on: ubuntu-latest
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
         compiler_v: [9, 10, 11]
 
+
+    env:
+      gcc_compiler_v: -${{ matrix.compiler_v }}
+
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
+
       - name: "[Package] Install GCC"
         run: sudo apt-get install g++-${{ matrix.compiler_v }}
+
       - name: Generate Project
-        run: cmake --preset="GCC ${{ matrix.config }}" ${{ env.CMAKE_OPTIONS }}
+        run: cmake --preset="GCC" ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="GCC ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="GCC ${{ matrix.config }}" -V
 
 
+
   Clang:
     runs-on: ubuntu-latest
+
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
         compiler_v: [9, 10, 11, 12]
 
+
+    env:
+      clang_compiler_v: -${{ matrix.compiler_v }}
+
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
+
       - name: "[Package] Install LLVM and Clang"
         run: sudo apt-get install clang-${{ matrix.compiler_v }}
+
       - name: Generate Project
-        run: cmake --preset="Clang ${{ matrix.config }}" ${{ env.CMAKE_OPTIONS }}
+        run: cmake --preset="Clang" ${{ env.CMAKE_OPTIONS }}
+
       - name: Build Project
         run: cmake --build --preset="Clang ${{ matrix.config }}" --verbose
+
       - name: Run CTests
         run: ctest --preset="Clang ${{ matrix.config }}" -V
