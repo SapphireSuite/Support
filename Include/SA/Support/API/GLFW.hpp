@@ -21,10 +21,7 @@
 	/// Sapphire Engine enable GLFW preprocessor.
 	#define SA_GLFW 0
 
-#endif
-
-
-#if SA_GLFW
+#else
 
 	// Include Vulkan before GLFW (if enabled).
 	#include <SA/Support/API/Vulkan.hpp>

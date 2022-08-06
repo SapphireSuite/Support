@@ -20,10 +20,7 @@
 	/// Sapphire Engine enable Vulkan preprocessor.
 	#define SA_VULKAN 0
 
-#endif
-
-
-#if SA_VULKAN
+#else
 
 	#include <vulkan/vulkan.h>
 

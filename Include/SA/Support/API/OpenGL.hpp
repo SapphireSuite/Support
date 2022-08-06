@@ -20,10 +20,7 @@
 	/// Sapphire Engine enable OpenGL preprocessor.
 	#define SA_OPEN_GL 0
 
-#endif
-
-
-#if SA_OPEN_GL
+#else
 
 	//#include <>
 
