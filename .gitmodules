@@ -1,3 +1,3 @@
-[submodule "ThirdParty/SA/CMake_Utils"]
-	path = ThirdParty/SA/CMake_Utils
-	url = https://github.com/SapphireSuite/CMake_Utils.git
+[submodule "CMake"]
+	path = CMake
+	url = https://github.com/SapphireSuite/CMake.git

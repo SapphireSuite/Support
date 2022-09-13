@@ -1,13 +1,5 @@
 # Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
 
-
-
-# Project
-
-project(SA_SupportProto)
-
-
-
 # Executable
 
 ## Add executable target.
