@@ -18,8 +18,8 @@ SA_ConfigureProject(SA_Support)
 
 add_library(SA_Support STATIC)
 
-SA_ConfigureTarget(TARGET SA_Support)
-SA_TargetSources(TARGET SA_Support)
+SA_ConfigureTarget(SA_Support)
+SA_TargetSources(SA_Support)
 
 
 
