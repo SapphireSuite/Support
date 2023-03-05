@@ -16,10 +16,10 @@ SA_ConfigureProject(SA_Support)
 
 # Library
 
-add_library(SA_Support STATIC)
+add_library(SA_Support INTERFACE)
 
-SA_ConfigureTarget(SA_Support)
-SA_TargetSources(SA_Support)
+SA_ConfigureTarget(SA_Support LINK INTERFACE)
+SA_TargetInterfaceSources(SA_Support)
 
 
 
