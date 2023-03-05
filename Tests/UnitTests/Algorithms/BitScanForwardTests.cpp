@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Sapphire development team. All Rights Reserved.
+// Copyright (c) 2023 Sapphire development team. All Rights Reserved.
 
 #include <gtest/gtest.h>
 
