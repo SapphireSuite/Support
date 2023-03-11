@@ -10,7 +10,6 @@ cls
 
 :: Query current directory name.
 for %%I in (.) do set CurrDirName=%%~nxI
-echo %CurrDirName%
 
 :: Set directory to root.
 if "%CurrDirName%" == "Doc" cd ../
