@@ -4,16 +4,16 @@
 
 setlocal
 
+
 :: Clear console.
 cls
 
+:: Check current directory name.
+if "%CD:~-3%" == "Doc" (
 
-:: Query current directory name.
-for %%I in (.) do set CurrDirName=%%~nxI
-
-:: Set directory to root.
-if "%CurrDirName%" == "Doc" cd ../
-
+	:: Set directory to root.
+    cd ..
+)
 
 :: Generate.
 doxygen Doc\doxygen.config

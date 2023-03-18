@@ -19,12 +19,12 @@ Makefile
 
 # CMake cloned repo
 googletest/
-
+googlebenchmark/
 
 # Build and Temp files.
 [Bb]uild/
 [Bb]uilds/
-[Ii]ntall/
+[Ii]nstall/
 
 [Bb]in/
 
