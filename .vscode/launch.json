@@ -36,6 +36,38 @@
 			]
 		},
 		{
+			// Requires 'Valgrind Task Integration'
+			// VS Code Quick Open (Ctrl+P) + 'ext install 1nVitr0.valgrind-task-integration'
+			"name": "Valgrind Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${command:cmake.launchTargetPath}",
+			"preLaunchTask": "valgrind",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [
+				{
+					"name": "PATH",
+					"value": "$PATH:${command:cmake.launchTargetDirectory}"
+				}
+			],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Connect to valgrind",
+					"text": "target remote | vgdb",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
 			"name": "(Windows) Launch",
 			"type": "cppvsdbg",
 			"request": "launch",
