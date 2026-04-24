@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Sapphire Suite's CMake tools.
-add_subdirectory(CMake)
+add_subdirectory(ThirdParty/SA/CMake)
 
 
 
