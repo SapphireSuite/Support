@@ -122,93 +122,79 @@
 		{
 			"name": "Clang Debug",
 			"inherits": "Debug",
-			"displayName": "Debug",
 			"configurePreset": "Clang"
 		},
 		{
 			"name": "Clang Release",
 			"inherits": "Release",
-			"displayName": "Release",
 			"configurePreset": "Clang"
 		},
 		{
 			"name": "GCC Debug",
 			"inherits": "Debug",
-			"displayName": "Debug",
 			"configurePreset": "GCC"
 		},
 		{
 			"name": "GCC Release",
 			"inherits": "Release",
-			"displayName": "Release",
 			"configurePreset": "GCC"
 		},
 		{
 			"name": "VS_2017 Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_2017"
 		},
 		{
 			"name": "VS_2017 Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_2017"
 		},
 		{
 			"name": "VS_2019 Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_2019"
 		},
 		{
 			"name": "VS_2019 Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_2019"
 		},
 		{
 			"name": "VS_2022 Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_2022"
 		},
 		{
 			"name": "VS_2022 Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_2022"
 		},
 		{
 			"name": "VS_ClangCL Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_ClangCL"
 		},
 		{
 			"name": "VS_ClangCL Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_ClangCL"
 		},
 		{
 			"name": "Xcode Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Xcode multi-config Debug preset",
 			"configurePreset": "Xcode"
 		},
 		{
 			"name": "Xcode Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Xcode multi-config Release preset",
 			"configurePreset": "Xcode"
@@ -237,93 +223,79 @@
 		{
 			"name": "Clang Debug",
 			"inherits": "Debug",
-			"displayName": "Debug",
 			"configurePreset": "Clang"
 		},
 		{
 			"name": "Clang Release",
 			"inherits": "Release",
-			"displayName": "Release",
 			"configurePreset": "Clang"
 		},
 		{
 			"name": "GCC Debug",
 			"inherits": "Debug",
-			"displayName": "Debug",
 			"configurePreset": "GCC"
 		},
 		{
 			"name": "GCC Release",
 			"inherits": "Release",
-			"displayName": "Release",
 			"configurePreset": "GCC"
 		},
 		{
 			"name": "VS_2017 Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_2017"
 		},
 		{
 			"name": "VS_2017 Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_2017"
 		},
 		{
 			"name": "VS_2019 Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_2019"
 		},
 		{
 			"name": "VS_2019 Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_2019"
 		},
 		{
 			"name": "VS_2022 Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_2022"
 		},
 		{
 			"name": "VS_2022 Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_2022"
 		},
 		{
 			"name": "VS_ClangCL Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Visual Studio multi-config Debug preset",
 			"configurePreset": "VS_ClangCL"
 		},
 		{
 			"name": "VS_ClangCL Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Visual Studio multi-config Release preset",
 			"configurePreset": "VS_ClangCL"
 		},
 		{
 			"name": "Xcode Debug",
-			"displayName": "Debug",
 			"inherits": "Debug",
 			"description": "Xcode multi-config Debug preset",
 			"configurePreset": "Xcode"
 		},
 		{
 			"name": "Xcode Release",
-			"displayName": "Release",
 			"inherits": "Release",
 			"description": "Xcode multi-config Release preset",
 			"configurePreset": "Xcode"

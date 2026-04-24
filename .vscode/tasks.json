@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "valgrind",
+			"type": "valgrind",
+			"target": "${command:cmake.launchTargetPath}",
+			"valgrind": {
+				"args": [
+					"--verbose",
+					"--leak-check=full",
+					"--track-origins=yes",
+					"--show-leak-kinds=all",
+					"--show-reachable=yes",
+					"--error-exitcode=1"
+				]
+			}
+		}
+	]
+}
